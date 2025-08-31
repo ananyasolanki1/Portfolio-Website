@@ -9,8 +9,11 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Ananya Solanki - Portfolio",
   description: "Personal portfolio of Ananya Solanki",
-    generator: 'v0.app'
-}
+    generator: 'v0.app',
+    icons: {
+      icon: "/favicon.ico",
+    },
+};
 
 export default function RootLayout({
   children,
