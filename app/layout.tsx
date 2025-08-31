@@ -16,7 +16,23 @@ export const metadata: Metadata = {
       { url: "/favicon.png", type: "image/png" },
     ],
   },
+  openGraph: {
+    title: "Ananya Solanki - Portfolio",
+    description: "Personal portfolio of Ananya Solanki",
+    url: "https://ananya-solanki-portfolio.vercel.app",
+    siteName: "Ananya Solanki Portfolio",
+    images: [
+      {
+        url: "/browser.png", // your image in public folder
+        width: 1200,          // recommended size for WhatsApp/Facebook
+        height: 630,
+      },
+    ],
+    locale: "en-US",
+    type: "website",
+  },
 };
+
 
 
 export default function RootLayout({
