@@ -23,14 +23,14 @@ export const metadata: Metadata = {
     siteName: "Ananya Solanki Portfolio",
     images: [
       {
-        url: "/browser.png", // your image in public folder
-        width: 1200,          // recommended size for WhatsApp/Facebook
+        url: "https://ananya-solanki-portfolio.vercel.app/browser.png", // full URL
+        width: 1200,
         height: 630,
       },
     ],
     locale: "en-US",
     type: "website",
-  },
+  },  
 };
 
 
