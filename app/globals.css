@@ -1,0 +1,373 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 220 40% 13%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 214 100% 50%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 32% 17%;
+    --input: 215 25% 27%;
+    --ring: 224.3 76.3% 48%;
+
+    /* Neon colors */
+    --neon-blue: 214 100% 50%;
+    --neon-cyan: 187 100% 50%;
+    --neon-purple: 280 100% 65%;
+    --neon-pink: 330 100% 65%;
+    --neon-green: 142 76% 50%;
+  }
+
+  .light {
+    --background: 240 100% 98%;
+    --foreground: 222 47% 11%;
+    --card: 240 100% 95%;
+    --card-foreground: 222 47% 11%;
+    --popover: 240 100% 95%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 214 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 100% 92%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 220 100% 92%;
+    --muted-foreground: 215.4 16.3% 35%;
+    --accent: 220 100% 92%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214.3 31.8% 85%;
+    --input: 240 100% 95%;
+    --ring: 214 100% 50%;
+
+    /* Neon colors - vibrant for light theme */
+    --neon-blue: 214 100% 45%;
+    --neon-cyan: 280 100% 50%;
+    --neon-purple: 280 100% 50%;
+    --neon-pink: 330 100% 50%;
+    --neon-green: 142 76% 40%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    width: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Add transition to all elements */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+  }
+}
+
+@layer components {
+  .link-style {
+    color: #0078ff;
+  }
+  .link-style:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    from,
+    to {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.5;
+      filter: blur(10px);
+    }
+    50% {
+      opacity: 1;
+      filter: blur(15px);
+    }
+  }
+
+  .animate-tilt {
+    animation: tilt 10s infinite linear;
+    transform-style: preserve-3d;
+  }
+
+  @keyframes tilt {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 3s infinite;
+  }
+
+  @keyframes bounce-slow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .gradient-text {
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, #0078ff, #00a3ff);
+  }
+
+  .gradient-text-purple {
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, #a855f7, #d946ef);
+  }
+
+  .gradient-text-pink {
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, #ec4899, #f472b6);
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(to right, #0078ff, #00a3ff);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .gradient-border-purple::before {
+    background: linear-gradient(to right, #a855f7, #d946ef);
+  }
+
+  .gradient-border-pink::before {
+    background: linear-gradient(to right, #ec4899, #f472b6);
+  }
+
+  /* Dark theme - keep original mesh background */
+  .bg-mesh {
+    background-color: hsla(var(--background));
+    background-image: radial-gradient(at 40% 20%, hsla(var(--neon-blue) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(var(--neon-purple) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsla(var(--neon-cyan) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, hsla(var(--neon-pink) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(var(--neon-blue) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, hsla(var(--neon-purple) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, hsla(var(--neon-cyan) / 0.1) 0px, transparent 50%);
+  }
+
+  /* Light theme - darker, more vibrant random gradients */
+  .light .bg-mesh {
+    background-color: hsl(var(--background));
+    background-image: radial-gradient(at 20% 30%, rgba(30, 64, 175, 0.25) 0px, transparent 45%),
+      radial-gradient(at 80% 20%, rgba(124, 58, 237, 0.3) 0px, transparent 50%),
+      radial-gradient(at 35% 70%, rgba(147, 51, 234, 0.28) 0px, transparent 40%),
+      radial-gradient(at 70% 80%, rgba(79, 70, 229, 0.32) 0px, transparent 45%),
+      radial-gradient(at 50% 40%, rgba(99, 102, 241, 0.22) 0px, transparent 35%),
+      radial-gradient(at 60% 60%, rgba(139, 92, 246, 0.27) 0px, transparent 40%),
+      radial-gradient(at 25% 85%, rgba(168, 85, 247, 0.24) 0px, transparent 38%),
+      radial-gradient(at 85% 45%, rgba(109, 40, 217, 0.26) 0px, transparent 42%);
+  }
+
+  .card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .card-3d-content {
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateZ(0) rotateX(0) rotateY(0);
+  }
+
+  /* Add these new animations */
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+
+  /* Grid pattern background */
+  .grid-pattern {
+    background-image: linear-gradient(rgba(0, 120, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 120, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .light .grid-pattern {
+    background-image: linear-gradient(rgba(168, 85, 247, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 85, 247, 0.15) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* More transparent card styles */
+  .card-translucent {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(30, 41, 59, 0.25) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .light .card-translucent {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(248, 250, 252, 0.8) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+  }
+
+  /* Light theme comprehensive fixes */
+  .light .text-white {
+    color: #1e293b !important;
+  }
+
+  .light .text-gray-300 {
+    color: #475569 !important;
+  }
+
+  .light .text-gray-400 {
+    color: #64748b !important;
+  }
+
+  .light .text-gray-500 {
+    color: #6b7280 !important;
+  }
+
+  .light .text-gray-600 {
+    color: #4b5563 !important;
+  }
+
+  .light .text-gray-700 {
+    color: #374151 !important;
+  }
+
+  .light .text-gray-800 {
+    color: #1f2937 !important;
+  }
+
+  /* Light theme button fixes */
+  .light .bg-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.85) 100%) !important;
+  }
+
+  .light .border-card {
+    border-color: rgba(168, 85, 247, 0.2) !important;
+  }
+
+  /* Light theme input fixes */
+  .light input,
+  .light textarea {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.85) 100%) !important;
+    color: #1e293b !important;
+    border-color: rgba(168, 85, 247, 0.3) !important;
+  }
+
+  .light input::placeholder,
+  .light textarea::placeholder {
+    color: #6b7280 !important;
+  }
+
+  /* Light theme specific overrides */
+  .light .hover\\:text-white:hover {
+    color: #ffffff !important;
+  }
+
+  .light .group-hover\\:text-white:hover {
+    color: #ffffff !important;
+  }
+
+  /* Force white text regardless of theme (for specific labels/icons) */
+  .keep-white,
+  .keep-white * {
+    color: #ffffff !important;
+  }
+}
